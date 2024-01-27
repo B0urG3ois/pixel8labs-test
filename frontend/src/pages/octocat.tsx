@@ -3,11 +3,7 @@ import { useGetUserFollowers } from '../hooks/getUserFollowers';
 import { useGetUserRepositories } from '../hooks/getUserRepos';
 import { useValidateAuth } from '../hooks/validateAuth';
 import { useEffect } from 'react';
-import { Header } from '../components/organisms/header/Header';
-import { Sidebar } from '../components/organisms/sidebar/Sidebar';
-import { Section } from '../components/molecules/section/Section';
-import { RepoCard } from '../components/organisms/repoCard/RepoCard';
-import { Footer } from '../components/organisms/footer/Footer';
+import { Header, Sidebar, Section, RepoCard, Footer } from '../components';
 
 export default function Octocat() {
   useGetUserInfo();

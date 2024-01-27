@@ -1,7 +1,7 @@
 import '../common/styles/app.scss';
 import { Inter } from 'next/font/google';
 import { AppProps } from 'next/app';
-import { AppProvider } from '../context/AppContext';
+import { AppDataWrapper } from '../context/AppDataContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,9 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
         }`
         }
       </style>
-      <AppProvider>
+      <AppDataWrapper>
         <Component {...pageProps} />
-      </AppProvider>
+      </AppDataWrapper>
     </>
   );
 }

@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { Repository } from '../../../types/repository';
-import { BadgeSmall } from '../../atoms/badge/Badge';
-import { LanguageDot } from '../../atoms/badge/LanguageDot';
-import { shortMonthAbbreviations } from '../../../common/constant/shortMonthAbbreviations';
-import { programmingLanguageColor } from '../../../common/constant/programmingLanguage';
+import { Repository } from '../types/repository';
+import { BadgeSmall } from './Badge';
+import { LanguageDot } from './LanguageDot';
+import { shortMonthAbbreviations } from '../common/constant/shortMonthAbbreviations';
+import { programmingLanguageColor } from '../common/constant/programmingLanguage';
 
 export const ListOfRepos = ({
   name,

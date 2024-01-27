@@ -1,10 +1,10 @@
-import { AppContext, AppContextType } from '../context/AppContext';
+import { AppDataContext, AppData } from '../context/AppDataContext';
 import { useContext, useEffect } from 'react';
 import { getConfig } from '../config/getConfig';
 import { User } from '../types/user';
 
 export const useGetUserInfo = () => {
-  const ctx = useContext(AppContext) as AppContextType;
+  const ctx = useContext(AppDataContext) as AppData;
 
   useEffect(() => {
     const config = getConfig();
@@ -16,7 +16,7 @@ export const useGetUserInfo = () => {
       })
       .then((data) => {
         const userData = data.data as User;
-        ctx.setUser(userData);
+        ctx.setCurrentUser(userData);
       })
       .catch((err) => {
         throw err;

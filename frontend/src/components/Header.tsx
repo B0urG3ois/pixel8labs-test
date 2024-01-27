@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { AppContext, AppContextType } from '../../../context/AppContext';
+import { AppDataContext, AppData } from '../context/AppDataContext';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ButtonLogin } from '../../atoms/button/ButtonLogin';
-import { Menu } from '../menu/Menu';
+import { ButtonLogin } from './ButtonLogin';
+import { Menu } from './Menu';
 
 export const Header = () => {
-  const ctx = useContext(AppContext) as AppContextType;
+  const ctx = useContext(AppDataContext) as AppData;
 
   return (
     <nav className='header flex justify-center shadow-sm bg-white'>
@@ -22,7 +22,7 @@ export const Header = () => {
           />
         </Link>
 
-        <div>{ctx.user?.login === 'octocat' ? <ButtonLogin /> : <Menu />}</div>
+        <div>{ctx.currentUser?.login === 'octocat' ? <ButtonLogin /> : <Menu />}</div>
       </div>
     </nav>
   );

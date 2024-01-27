@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google';
-import { useAuthentication } from '../../../hooks/authentication';
+import { useAuthentication } from '../hooks/authentication';
 import { Button } from './Button';
 
 const inter = Inter({ subsets: ['latin'] });

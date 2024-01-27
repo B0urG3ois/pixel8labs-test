@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment, useContext } from 'react';
-import { AppContext, AppContextType } from '../../../context/AppContext';
-import { BurgerBars } from '../../atoms/icon/BurgerBars';
-import { useRevokeAuth } from '../../../hooks/revokeAuth';
+import { AppDataContext, AppData } from '../context/AppDataContext';
+import { BurgerBars } from './BurgerBars';
+import { useRevokeAuth } from '../hooks/revokeAuth';
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 
 const MenuBtn = () => {
-  const ctx = useContext(AppContext) as AppContextType;
-  const avatarUrl = ctx.user?.avatar_url;
+  const ctx = useContext(AppDataContext) as AppData;
+  const avatarUrl = ctx.currentUser?.avatar_url;
 
   return (
     <div className='flex hover:cursor-pointer hover:bg-gray-50 items-center px-4 py-2 gap-4 border rounded-full'>
@@ -27,8 +27,8 @@ const MenuBtn = () => {
 };
 
 export const Menu = () => {
-  const ctx = useContext(AppContext) as AppContextType;
-  const avatarUrl = ctx.user?.avatar_url;
+  const ctx = useContext(AppDataContext) as AppData;
+  const avatarUrl = ctx.currentUser?.avatar_url;
 
   const logout = useRevokeAuth();
   const handleLogout = () => {
@@ -71,10 +71,10 @@ export const Menu = () => {
                 </div>
                 <div>
                   <h3 className='text-sm text-gray-600 font-semibold whitespace-nowrap'>
-                    {ctx.user?.name}
+                    {ctx.currentUser?.name}
                   </h3>
                   <p className='whitespace-nowrap text-xs font-normal text-gray-500'>
-                    {ctx.user?.email}
+                    {ctx.currentUser?.email}
                   </p>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export const Menu = () => {
           </HeadlessMenu.Item>
           <HeadlessMenu.Item>
             <Link
-              href={`https://github.com/${ctx.user?.login}`}
+              href={`https://github.com/${ctx.currentUser?.login}`}
               className='px-4 py-[10px] font-medium text-gray-600 hover:text-gray-500 text-sm'
             >
               View profile
