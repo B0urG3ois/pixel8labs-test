@@ -1,4 +1,4 @@
-import { User } from '../../../types/user';
+import { User } from '../types/user';
 import Image from 'next/image';
 
 interface Props {

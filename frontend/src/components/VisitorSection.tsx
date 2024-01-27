@@ -1,4 +1,4 @@
-import { Followers } from '../../../types/followers';
+import { Followers } from '../types/followers';
 import Image from 'next/image';
 import Link from 'next/link';
 

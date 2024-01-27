@@ -1,25 +1,25 @@
 import { useContext, useEffect } from 'react';
-import { AppContext, AppContextType } from '../context/AppContext';
+import { AppDataContext, AppData } from '../context/AppDataContext';
 import { getConfig } from '../config/getConfig';
 import { Followers } from '../types/followers';
 
 export const useGetUserFollowers = () => {
-  const ctx = useContext(AppContext) as AppContextType;
+  const ctx = useContext(AppDataContext) as AppData;
 
   useEffect(() => {
     const config = getConfig();
 
-    if (ctx.user !== undefined) {
-      fetch(ctx.user.followers_url, config)
+    if (ctx.currentUser !== undefined) {
+      fetch(ctx.currentUser.followers_url, config)
         .then(async (response) => {
           return await response.json();
         })
         .then((followers: Followers[]) => {
-          ctx.setFollowers(followers);
+          ctx.setUserFollowers(followers);
         })
         .catch((err) => {
           throw err;
         });
     }
-  }, [ctx.user]);
+  }, [ctx.currentUser]);
 }

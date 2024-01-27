@@ -1,6 +1,6 @@
-import { User } from '../../../types/user';
-import { Envelope } from '../../atoms/icon/Envelope';
-import { UserIcon } from '../../atoms/icon/UserIcon';
+import { User } from '../types/user';
+import { Envelope } from './Envelope';
+import { UserIcon } from './UserIcon';
 
 interface Props {
   user?: User;
