@@ -21,7 +21,6 @@ on:
       - '**/*.yml'
       - '**/*.yaml'
       - '**/all'
-  workflow_dispatch:
 
 jobs:
   analyze-backend:
