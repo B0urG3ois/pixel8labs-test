@@ -49,9 +49,12 @@ func (u *Usecase) getUserDetails(ctx context.Context, reqParams entity.OAuthRequ
 		return user, err
 	}
 
-	user, err = u.GithubRepo.GetUserByID(ctx, user.ID)
+	existingUser, err := u.GithubRepo.GetUserByID(ctx, user.ID)
 	if err != nil {
 		return user, err
+	}
+	if existingUser.ID != constant.DefaultInt64 {
+		user = existingUser
 	}
 
 	// Get User Emails.

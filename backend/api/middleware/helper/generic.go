@@ -3,10 +3,8 @@ package helper
 import (
 	"encoding/json"
 	"errors"
-	"log"
 	"net/http"
 	"pixel8labs-test/backend/internal/constant"
-	"strings"
 )
 
 // Middleware defines a generic middleware function.
@@ -39,50 +37,56 @@ func AuthMiddleware(next http.Handler) http.HandlerFunc {
 		ctx := r.Context()
 		auth := r.Header.Get(constant.HTTPHeaderAuthorization)
 
-		// Set the Content-Type header to indicate JSON response.
-		w.Header().Set(constant.HTTPHeaderContentType, "application/json")
+		if auth == constant.DefaultString {
+			r = r.WithContext(ctx)
+			next.ServeHTTP(w, r)
+		} else {
+			// Set the Content-Type header to indicate JSON response.
+			w.Header().Set(constant.HTTPHeaderContentType, "application/json")
 
-		tokenize := strings.Split(auth, " ")
-		if len(tokenize) < 2 {
-			w.WriteHeader(http.StatusInternalServerError)
-			w.Write(writeErrorResponse(http.StatusInternalServerError))
+			//tokenize := strings.Split(auth, " ")
+			//if len(tokenize) < 2 {
+			//	w.WriteHeader(http.StatusInternalServerError)
+			//	w.Write(writeErrorResponse(http.StatusInternalServerError))
+			//
+			//	return
+			//}
+			//
+			//// Create an HTTP client.
+			//client := &http.Client{}
+			//
+			//// Create a request with a custom header.
+			//req, err := http.NewRequestWithContext(ctx, "GET", "https://api.github.com/user", nil)
+			//if err != nil {
+			//	log.Printf("Failed to create request: %v", err)
+			//	return
+			//}
+			//
+			//// Create request header.
+			//req.Header.Set(constant.HTTPHeaderAuthorization, tokenize[1])
+			//req.Header.Set(constant.HTTPHeaderAcceptContent, constant.DefaultAPIGitHubAcceptContentValue)
+			//
+			//// Do HTTP call to service provider
+			//res, err := client.Do(req)
+			//if err != nil {
+			//	log.Printf("Failed to call service provider: %v", err)
+			//	return
+			//}
+			//defer res.Body.Close()
+			//
+			//// Validate response status code.
+			//if res.StatusCode != http.StatusOK {
+			//	if res.StatusCode == http.StatusUnauthorized {
+			//		r.Header.Set(constant.HTTPHeaderAuthorization, constant.DefaultString)
+			//	} else {
+			//		log.Printf("Request failed with status code: %v", res.StatusCode)
+			//		return
+			//	}
+			//}
 
-			return
+			r = r.WithContext(ctx)
+			next.ServeHTTP(w, r)
 		}
-
-		// Create an HTTP client.
-		client := &http.Client{}
-
-		// Create a request with a custom header.
-		req, err := http.NewRequestWithContext(ctx, "GET", "https://api.github.com/user", nil)
-		if err != nil {
-			log.Printf("Failed to create request: %v", err)
-			return
-		}
-
-		// Create request header.
-		req.Header.Set(constant.HTTPHeaderAuthorization, tokenize[1])
-
-		// Do HTTP call to service provider
-		res, err := client.Do(req)
-		if err != nil {
-			log.Printf("Failed to call service provider: %v", err)
-			return
-		}
-		defer res.Body.Close()
-
-		// Validate response status code.
-		if res.StatusCode != http.StatusOK {
-			if res.StatusCode == http.StatusUnauthorized {
-				r.Header.Set(constant.HTTPHeaderAuthorization, constant.DefaultString)
-			} else {
-				log.Printf("Request failed with status code: %v", res.StatusCode)
-				return
-			}
-		}
-
-		r = r.WithContext(ctx)
-		next.ServeHTTP(w, r)
 	}
 }
 

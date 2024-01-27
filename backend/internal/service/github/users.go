@@ -3,6 +3,7 @@ package github
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -43,20 +44,20 @@ func (m *Module) GetUserInfo(ctx context.Context, reqParams entity.OAuthRequest)
 	res, err := client.Do(req)
 	if err != nil {
 		log.Printf("Failed to call service provider: %v", err)
-		return result, nil
+		return result, err
 	}
 	defer res.Body.Close()
 
 	// Validate response status code.
 	if res.StatusCode != http.StatusOK {
 		log.Printf("Request failed with status code: %v", res.StatusCode)
-		return result, nil
+		return result, errors.New("Request failed")
 	}
 
 	respBody, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Printf("Error reading response body: %v", err)
-		return result, nil
+		return result, err
 	}
 
 	// Parse response body.
@@ -104,20 +105,20 @@ func (m *Module) GetUserEmails(ctx context.Context, reqParams entity.OAuthReques
 	res, err := client.Do(req)
 	if err != nil {
 		log.Printf("Failed to call service provider: %v", err)
-		return result, nil
+		return result, err
 	}
 	defer res.Body.Close()
 
 	// Validate response status code.
 	if res.StatusCode != http.StatusOK {
 		log.Printf("Request failed with status code: %v", res.StatusCode)
-		return result, nil
+		return result, errors.New("Request failed")
 	}
 
 	respBody, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Printf("Error reading response body: %v", err)
-		return result, nil
+		return result, err
 	}
 
 	// Parse response body.

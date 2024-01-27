@@ -6,8 +6,9 @@ type User struct {
 	ID           int64     `json:"id"`
 	AvatarURL    string    `json:"avatar_url"`
 	Name         string    `json:"name"`
-	Username     string    `json:"twitter_username"`
+	Username     string    `json:"login"`
 	Email        string    `json:"email"`
+	Bio          string    `json:"bio"`
 	Followers    int64     `json:"followers"`
 	Following    int64     `json:"following"`
 	FollowersUrl string    `json:"followers_url"`

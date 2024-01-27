@@ -10,11 +10,12 @@ func (r *Repo) toBase(args entity.User) userTable {
 		ID:        args.ID,
 		AvatarURL: args.AvatarURL,
 		Name:      args.Name,
-		Username: sql.NullString{
-			String: args.Username,
+		Username:  args.Username,
+		Email:     args.Email,
+		Bio: sql.NullString{
+			String: args.Bio,
 			Valid:  true,
 		},
-		Email:        args.Email,
 		Followers:    args.Followers,
 		Following:    args.Following,
 		FollowersUrl: args.FollowersUrl,

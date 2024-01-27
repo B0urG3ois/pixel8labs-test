@@ -39,8 +39,9 @@ type userTable struct {
 	ID           int64
 	AvatarURL    string
 	Name         string
-	Username     sql.NullString
+	Username     string
 	Email        string
+	Bio          sql.NullString
 	Followers    int64
 	Following    int64
 	FollowersUrl string
@@ -56,8 +57,9 @@ func (u *userTable) ToEntity() entity.User {
 		ID:           u.ID,
 		AvatarURL:    u.AvatarURL,
 		Name:         u.Name,
-		Username:     u.Username.String,
+		Username:     u.Username,
 		Email:        u.Email,
+		Bio:          u.Bio.String,
 		Followers:    u.Followers,
 		Following:    u.Following,
 		FollowersUrl: u.FollowersUrl,

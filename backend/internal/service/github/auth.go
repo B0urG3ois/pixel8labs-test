@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -59,14 +60,14 @@ func (m *Module) Logout(ctx context.Context, reqParams entity.OAuthRequest) (boo
 	res, err := client.Do(req)
 	if err != nil {
 		log.Fatalf("Failed to call service provider: %v", err)
-		return result, nil
+		return result, err
 	}
 	defer res.Body.Close()
 
 	// Validate response status code.
 	if res.StatusCode != http.StatusOK {
 		log.Fatalf("Request failed with status code: %v", res.StatusCode)
-		return result, nil
+		return result, errors.New("Request failed")
 	}
 
 	return true, nil

@@ -3,6 +3,7 @@ package github
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -43,20 +44,20 @@ func (m *Module) GetRepositoriesByUser(ctx context.Context, reqParams entity.OAu
 	res, err := client.Do(req)
 	if err != nil {
 		log.Fatalf("Failed to call service provider: %v", err)
-		return result, nil
+		return result, err
 	}
 	defer res.Body.Close()
 
 	// Validate response status code.
 	if res.StatusCode != http.StatusOK {
 		log.Fatalf("Request failed with status code: %v", res.StatusCode)
-		return result, nil
+		return result, errors.New("Request failed")
 	}
 
 	respBody, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Fatalf("Error reading response body: %v", err)
-		return result, nil
+		return result, err
 	}
 
 	// Parse response body.
