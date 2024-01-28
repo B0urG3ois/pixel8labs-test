@@ -8,7 +8,7 @@ export const useGetUserInfo = () => {
 
   useEffect(() => {
     const config = getConfig();
-    const url = process.env.NEXT_PUBLIC_BASE_API + '/user';
+    const url = process.env.NEXT_PUBLIC_BASE_API + '/' + process.env.NEXT_PUBLIC_API_VERSION + '/user';
 
     fetch(url, config)
       .then(async (response) => {

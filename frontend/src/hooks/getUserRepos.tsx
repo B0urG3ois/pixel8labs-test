@@ -8,7 +8,7 @@ export const useGetUserRepositories = () => {
 
   useEffect(() => {
     const config = getConfig();
-    const url = process.env.NEXT_PUBLIC_BASE_API + '/repositories';
+    const url = process.env.NEXT_PUBLIC_BASE_API + '/' + process.env.NEXT_PUBLIC_API_VERSION + '/repositories';
 
     fetch(url, config)
       .then(async (response) => {
