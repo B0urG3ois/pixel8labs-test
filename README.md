@@ -2,6 +2,8 @@
 
 A web application that displays GitHub user profiles with detailed information, repositories, and visitor tracking.
 
+**Note: I apologize for any slowness in the application, as I am currently utilizing the most basic package offered on Heroku. :D**
+
 ## Table of Contents
 
 - [Overview](#overview)
