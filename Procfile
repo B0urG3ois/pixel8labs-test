@@ -1,2 +1,1 @@
-work: bin/compile
-web: go run main.go
+web: go run cmd/app/main.go
