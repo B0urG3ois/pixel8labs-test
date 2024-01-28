@@ -19,7 +19,6 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/render"
-	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/rs/cors"
 	"golang.org/x/oauth2"
@@ -32,11 +31,11 @@ func main() {
 	)
 
 	// Load env file.
-	err = godotenv.Load()
-	if err != nil {
-		log.Fatalf("Failed to load config: %v", err)
-		return
-	}
+	//err = godotenv.Load()
+	//if err != nil {
+	//	log.Fatalf("Failed to load config: %v", err)
+	//	return
+	//}
 
 	// Initialize Config.
 	config := app.InitAppConfig()
