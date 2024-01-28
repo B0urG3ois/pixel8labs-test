@@ -1,0 +1,30 @@
+name: Pipeline
+on:
+  pull_request:
+    branches:
+      - "main"
+      - "master"
+  workflow_dispatch:
+    inputs:
+      git-commit-id:
+        description: 'Insert valid Commit ID'
+        required: true
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.21.0'
+
+      - name: Build and Deploy Backend
+        run: |
+          cd ${{ github.workspace }}/backend/
+          go get -d -v ./...
+          cd cmd/app/
+          go build -o pixel8labs
