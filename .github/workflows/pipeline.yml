@@ -22,7 +22,11 @@ jobs:
         run: npm install -g heroku
 
       - name: Login to Heroku
-        run: heroku login --email ${{ secrets.HEROKU_EMAIL }} --apikey ${{ secrets.HEROKU_API_KEY }}
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "pixel8labs-test"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
 
       - name: Build and deploy to Heroku
         run: |
