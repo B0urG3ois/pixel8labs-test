@@ -2,7 +2,6 @@ package helper
 
 import (
 	"encoding/json"
-	"errors"
 	"net/http"
 	"pixel8labs-test/backend/internal/constant"
 )
@@ -28,7 +27,7 @@ func GenericMiddleware(next func(http.ResponseWriter, *http.Request) (interface{
 
 		w.Header().Set(constant.HTTPHeaderContentType, "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write(jsonResponse)
+		w.Write(jsonResponse) //nolint:all
 	}
 }
 
@@ -90,11 +89,11 @@ func AuthMiddleware(next http.Handler) http.HandlerFunc {
 	}
 }
 
-func writeErrorResponse(statusCode int) []byte {
-	mapSts := map[string]string{
-		"error": errors.New(http.StatusText(statusCode)).Error(),
-	}
-	res, _ := json.Marshal(mapSts)
-
-	return res
-}
+//func writeErrorResponse(statusCode int) []byte {
+//	mapSts := map[string]string{
+//		"error": errors.New(http.StatusText(statusCode)).Error(),
+//	}
+//	res, _ := json.Marshal(mapSts)
+//
+//	return res
+//}

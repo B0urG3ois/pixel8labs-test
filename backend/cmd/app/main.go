@@ -87,7 +87,7 @@ func startApp(
 
 	// Run apps.
 	log.Printf("Application started at port :%s", config.ApplicationConfig.Port)
-	http.ListenAndServe(fmt.Sprintf(":%s", config.ApplicationConfig.Port), r)
+	http.ListenAndServe(fmt.Sprintf(":%s", config.ApplicationConfig.Port), r) //nolint:all
 }
 
 func newRoutes(githubHandler *_githubHandler.Handler) *chi.Mux {
