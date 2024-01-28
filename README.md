@@ -1,51 +1,129 @@
-# Pixel8Labs Product Developer Take-home Test
+# GitHub Profile Viewer
 
-Thanks for your interest in working with us as a product developer.
-This take-home test is for us to gauge your engineering capabilities and determine whether we can move to the work trial phase. It's not a test per se but rather a way for Pixel8Labs to know more about your abilities and also for you to see if you would like the kind of work we do, before we spend more time together in the work trial.
+A web application that displays GitHub user profiles with detailed information, repositories, and visitor tracking.
 
-This test should not take you more than a few hours but you are allowed to spend more within the given 3 days just in case you want to touch things up and submit a polished piece of work.
+## Table of Contents
 
-## Tasks
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [GitHub OAuth Integration](#github-oauth-integration)
 
-Here are the requirements for the take-home project
+## Overview
 
-### Basic tasks
+GitHub Profile Viewer is a web application that allows users to view GitHub profiles, including: 
+- Profile Picture
+- Full Name
+- Email
+- Number of followers and following
+- The first 6 repositories
+- Login using their GitHub account via OAuth 
 
-Implement and deploy (to the platform provider of your choice) an application that
+The application also tracks the total number of visitors and displays the 3 most recent visitors.
 
-- [ ] Show profile of a github user / organization with:
-  - [ ] Profile picture
-  - [ ] Full name
-  - [ ] Email if it's available
-  - [ ] Numbers of followers and following
-- [ ] Show the first 6 (or less if there're less repositories from such user) repositories of such user
-- [ ] The default home page will redirect to `/octocat`
-- [ ] Users can login using their github account using Oauth
-- [ ] Show details about profile views:
-  - [ ] The total number of views a profile have gotten (regardless whether the view was from an authenticated user or not)
-  - [ ] The last 3 people who view a particular profile (link to those profiles on the same app as well)
 
-The frontend design for this app can be found in [this Figma file](https://www.figma.com/file/fLiLQfjSF6X7pEfHli2Lwh/Fullstack-Engineer-Test-Case?type=design&node-id=0%3A1&mode=design&t=RfULQB2MF956TxTT-1)
+By default, if a user is not logged in, the page will redirect to `/octocat`.
 
-**Notes**:
+## Features
 
-- Go usage is optional, you can create your own backend implementation in the backend folder.
-- Frontend must be using React and the existing setup that we have in the [frontend](./frontend/) folder.
-- Tailwind usage is optional, please feel free to use any CSS libraries / frameworks.
+- Display GitHub user profiles
+- OAuth login using GitHub account
+- Show profile picture, full name, email, followers, and following
+- Display the first 6 repositories of a user
+- Total number of visitors tracking
+- Show the 3 most recent visitors
+- Responsive UI based on Figma design
+- Redirect to `/octocat` for non-logged-in users
 
-### Stretch (optional) tasks
+## Tech Stack
 
-These tasks are optional but we would encourage you to give them a try to demonstrate more of your skills
+- Frontend:
+  - Next.js 13.0.6
+  - Tailwind CSS
+  - React Context
+  - Custom Hooks
 
-- [ ] Setup Github Actions workflow file for lint check on PRs to `master`
-- [ ] Setup Github Actions workflow file to deploy on pushes to `master`
-- [ ] Deploy the website and submit the URL to us
+- Backend:
+  - Golang 1.21
+  - Router-chi for routing
+  - SQLite3 as the database
+  - GitHub OAuth integration
 
-## Tips
+## Installation
 
-- Github APIs that you might need to checkout:
-  - [Github OAuth](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps)
-  - [API to get an user profile](https://docs.github.com/en/free-pro-team@latest/rest/users/users?apiVersion=2022-11-28#get-a-user)
-  - [API to get repos of an user](https://docs.github.com/en/free-pro-team@latest/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user)
-- Remember to document your technical decisions and considerations as we're considering your thought process as much as the absolute development results.
-- Last but not least, remember to **have fun**!!
+### Backend
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/B0urG3ois/pixel8labs-test.git
+
+2. Install Golang 1.21:
+   ```bash
+   https://go.dev/doc/install
+
+3. Run application:
+   ```bash
+   cd /backend
+   go run cmd/app/main.go
+
+4. Application Start:
+   ```bash
+   Application start on port 8000
+   http://localhost:8000/api/*
+
+
+### Frontend
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/B0urG3ois/pixel8labs-test.git
+
+2. Install Node.js and NPM:
+   ```bash
+   https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+3. Run application:
+   ```bash
+   cd /frontend
+   npm install
+   npm run dev
+
+4. Application Start:
+   ```bash
+   Application start on port 3000, and open your browser
+   http://localhost:3000
+
+
+## Documentation
+
+- Postman Collection
+  ```bash
+  https://api.postman.com/collections/12053329-8d8ac234-9f8d-4305-a8b7-3566f438328d?access_key=PMAT-01HN79YPPTZBJ7T8FS6BCBS3WY
+
+- Endpoints Collection
+  - `/api/login`: Initiate the OAuth flow to link with a GitHub account.
+  - `/api/logout`: Log the user out.
+  - `/api/callback`: Manage code exchange against the front-callback layer's code.
+  - `/api/v1/user`: Retrieve the user information details.
+  - `/api/v1/repositories`: Retrieve the user's six most recent repositories.
+
+- Figma Design
+  ```bash
+  https://www.figma.com/file/fLiLQfjSF6X7pEfHli2Lwh/Fullstack-Engineer-Test-Case?type=design&node-id=0%3A1&mode=design&t=RfULQB2MF956TxTT-1
+  
+- Backend Public URL
+  ```bash
+  https://pixel8labs-test-be31bc5e9b1e.herokuapp.com
+  
+- Frontend Public URL
+  ```bash
+  https://pixel8labs-assignment.vercel.app/
+
+
+## GitHub OAuth Integration
+
+Go-based wrappers abstract all interactions with the GitHub API in the backend. Efficient data retrieval from the backend by the frontend eliminates the requirement for additional client libraries.
+
+----------------------------------------------------------------
+
+The documentation aims to offer a comprehensive insight into the GitHub OAuth application, encompassing its components and instructions for local setup and execution. For a more in-depth understanding of the code structure and implementation, consult the source code and comments within the relevant repository files.

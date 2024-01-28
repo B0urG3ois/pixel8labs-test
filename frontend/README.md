@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Backend
 
-## Getting Started
+This backend is a critical component that handles authentication through GitHub OAuth, and integrating with GitHub API.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-pnpm dev
-# or
-yarn dev
-```
+### Next.JS 13
+Next.js typically introduces improvements in performance, developer experience, and additional features with each release. Version upgrades often include enhancements to build times, optimization of server-side rendering, and updates to the underlying dependencies. Additionally, new versions might bring improvements to the development server, enhanced support for serverless functions, and updates to the Next.js API. Always check the official Next.js release notes for the most accurate and up-to-date information on the advantages of specific versions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tailwind CSS
+Tailwind CSS makes styling websites super easy. It gives you ready-to-use classes that help you design without having to write a lot of custom CSS. This makes it quick to create consistent and responsive designs, and you can easily tweak styles as needed. Tailwind simplifies the whole process, making it efficient for building and adjusting the look of your website without the hassle of writing a ton of CSS code.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### React Context
+React Context makes it easy to share information between different parts of a React app without passing it through many components. This helps keep the code clean and avoids unnecessary complications. It's handy for managing things like themes or user preferences across the whole application, making state management in React simpler.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### No External REST API Client
+We connect with the backend using the built-in libraries and the Next.js API, removing the necessity for extra external REST API client libraries. This simplifies the frontend by reducing its complexity.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Installation
 
-## Learn More
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/B0urG3ois/pixel8labs-test.git
 
-To learn more about Next.js, take a look at the following resources:
+2. Install Node.js and NPM:
+   ```bash
+   https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Run application:
+   ```bash
+   cd /frontend
+   npm install
+   npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Application Start:
+   ```bash
+   Application start on port 3000, and open your browser
+   http://localhost:3000
 
-## Deploy on Vercel
+## Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Figma Design
+  ```bash
+  https://www.figma.com/file/fLiLQfjSF6X7pEfHli2Lwh/Fullstack-Engineer-Test-Case?type=design&node-id=0%3A1&mode=design&t=RfULQB2MF956TxTT-1
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Frontend Public URL
+  ```bash
+  https://pixel8labs-assignment.vercel.app/
+
+----------------------------------------------------------------
+Please feel free to examine the code and make any required modifications or improvements to customize it for your particular needs.
