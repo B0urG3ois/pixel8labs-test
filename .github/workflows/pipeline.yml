@@ -15,9 +15,27 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.13
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "pixel8labs-test"
-          heroku_email: "ega@student.umn.ac.id"
+          go-version: '1.21.0'
+
+      - name: Install Heroku CLI
+        run: npm install -g heroku
+
+      - name: Login to Heroku
+        run: heroku login --email ${{ secrets.HEROKU_EMAIL }} --apikey ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Build and deploy to Heroku
+        run: |
+          heroku create
+          go build -o myapp
+          git add myapp
+          git commit -m "Build binary"
+          git push heroku main
+
+      - name: Release to production
+        run: heroku releases:deploy HEAD
