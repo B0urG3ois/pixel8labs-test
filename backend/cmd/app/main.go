@@ -94,7 +94,7 @@ func newRoutes(githubHandler *_githubHandler.Handler) *chi.Mux {
 
 	// Create a new CORS middleware with default options.
 	corsMiddleware := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
+		AllowedOrigins: []string{"http://localhost:3000", "https://pixel8labs-assignment.vercel.app"},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 	})
