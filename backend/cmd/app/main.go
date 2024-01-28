@@ -30,12 +30,12 @@ func main() {
 		err error
 	)
 
-	// Load env file.
-	//err = godotenv.Load()
-	//if err != nil {
-	//	log.Fatalf("Failed to load config: %v", err)
-	//	return
-	//}
+	// Load env file for dev env.
+	/*err = godotenv.Load()
+	if err != nil {
+		log.Fatalf("Failed to load config: %v", err)
+		return
+	}*/
 
 	// Initialize Config.
 	config := app.InitAppConfig()
@@ -106,13 +106,15 @@ func newRoutes(githubHandler *_githubHandler.Handler) *chi.Mux {
 	r.Use(middleware.URLFormat)
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 
-	r.Route("/v1", func(r chi.Router) {
+	r.Route("/api", func(r chi.Router) {
 		r.Post("/login", _middleware.GenericMiddleware(githubHandler.GetAuthCode))
 		r.Post("/logout", _middleware.GenericMiddleware(githubHandler.Logout))
 		r.Get("/callback", _middleware.GenericMiddleware(githubHandler.Callback))
 
-		r.Get("/user", _middleware.AuthMiddleware(_middleware.GenericMiddleware(githubHandler.GetUserInfo)))
-		r.Get("/repositories", _middleware.AuthMiddleware(_middleware.GenericMiddleware(githubHandler.GetRepositories)))
+		r.Route("/v1", func(r chi.Router) {
+			r.Get("/user", _middleware.AuthMiddleware(_middleware.GenericMiddleware(githubHandler.GetUserInfo)))
+			r.Get("/repositories", _middleware.AuthMiddleware(_middleware.GenericMiddleware(githubHandler.GetRepositories)))
+		})
 	})
 
 	return r
