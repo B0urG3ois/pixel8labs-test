@@ -11,7 +11,7 @@ func (h *Handler) GetAuthCode(w http.ResponseWriter, r *http.Request) (interface
 	ctx := r.Context()
 
 	result := h.githubUC.LoginUrl(ctx)
-	ctx = context.WithValue(ctx, constant.ContextToken, result)
+	ctx = context.WithValue(ctx, constant.ContextToken, result) //nolint:all
 
 	return result, nil
 }
@@ -35,6 +35,6 @@ func (h *Handler) Callback(w http.ResponseWriter, r *http.Request) (interface{},
 		return token, err
 	}
 
-	ctx = context.WithValue(ctx, constant.ContextToken, token.AccessToken)
+	ctx = context.WithValue(ctx, constant.ContextToken, token.AccessToken) //nolint:all
 	return token, nil
 }
