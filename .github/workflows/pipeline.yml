@@ -1,0 +1,27 @@
+name: "Pipeline"
+
+on:
+  push:
+    branches:
+      - "main"
+      - "master"
+  pull_request:
+    branches:
+      - "main"
+      - "master"
+  workflow_dispatch:
+    inputs:
+      git-commit-id:
+        description: 'Insert valid Commit ID'
+        required: true
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.13
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "pixel8labs-test"
+          heroku_email: "ega@student.umn.ac.id"
